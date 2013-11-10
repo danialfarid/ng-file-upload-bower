@@ -1,11 +1,31 @@
 {
   "name": "angularjs-file-upload",
   "main": "angular-file-upload.min.js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "homepage": "https://github.com/danialfarid/angular-file-upload",
   "authors": [
     "danialf <danial.farid@gmail.com>"
   ],
   "description": "An AngularJS directive for file upload using HTML5 with FileAPI polyfill for unsupported browsers",
-  "license": "MIT"
- }
+  "keywords": [
+    "AngularJS.",
+    "angular",
+    "angular-js",
+    "file-upload",
+    "upload",
+    "FileAPI",
+    "ajax-file-upload"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests", 
+    "src", 
+    "war"  ],
+    "dependencies": {
+        "angular": "~1.0.7"
+    }
+}
