@@ -1,13 +1,21 @@
-**Click here for <a href="http://angular-file-upload.appspot.com/" target="_blank">DEMO</a>**
+# angular-file-upload-bower
 
-Lightweight Angular JS directive to upload files using input type file or drag&drop with ajax call.
+bower distribution of [angular-file-upload](https://github.com/danialfarid/angular-file-upload).
 
-HTML:
-```html
-<script src="angular.file-upload-shim.min.js"></script> <!--only needed if you support upload progress/abort or non HTML5 FormData browsers.-->
-<!-- NOTE: angular.file-upload-shim.js MUST BE PLACED BEFORE angular.js-->
-<script src="angular.min.js"></script>
-<script src="angular-file-upload.min.js"></script> <!--place after angular.js-->
+## Install
+
+Install with `bower`:
+
+```shell
+bower install angularjs-file-upload
 ```
 
-For more information visit [angular-file-upload](https://github.com/danialfarid/angular-file-upload)
+Add a `<script>` to your `index.html`:
+
+```html
+<script src="/bower_components/angular/angular-file-upload-shim.js"></script>
+<!--only needed if you support upload progress/abort or non HTML5 FormData browsers.-->
+<!-- NOTE: angular.file-upload-shim.js MUST BE PLACED BEFORE angular.js-->
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular/angular-file-upload.js"></script>
+```
