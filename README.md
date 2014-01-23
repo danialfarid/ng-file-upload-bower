@@ -7,7 +7,7 @@ bower distribution of [angular-file-upload](https://github.com/danialfarid/angul
 Install with `bower`:
 
 ```shell
-bower install angularjs-file-upload
+bower install ng-file-upload
 ```
 
 Add a `<script>` to your `index.html`:
