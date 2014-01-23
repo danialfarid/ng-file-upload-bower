@@ -1,6 +1,6 @@
 {
   "name": "angular-file-upload",
-  "main": "angular-file-upload.min.js",
+  "main": "angular-file-upload.js",
   "version": "1.2.5",
   "homepage": "https://github.com/danialfarid/angular-file-upload",
   "authors": [
