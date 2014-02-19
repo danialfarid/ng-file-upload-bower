@@ -1,7 +1,7 @@
 /**!
  * AngularJS file upload/drop directive with http post and progress
  * @author  Danial  <danial.farid@gmail.com>
- * @version 1.2.7
+ * @version 1.2.8
  */
 (function() {
 	
@@ -58,8 +58,10 @@ angularFileUpload.service('$upload', ['$http', '$rootScope', '$timeout', functio
 		promise.then = (function(promise, origThen) {
 			return function(s, e, p) {
 				config.progress = p || config.progress;
-				origThen.apply(promise, [s, e, p]);
-				return promise;
+				var result = origThen.apply(promise, [s, e, p]);
+				result.abort = promise.abort;
+				result.progress = promise.progress;
+				return result;
 			};
 		})(promise, promise.then);
 		
@@ -150,14 +152,18 @@ angularFileUpload.directive('ngFileDropAvailable', [ '$parse', '$http', '$timeou
 angularFileUpload.directive('ngFileDrop', [ '$parse', '$http', '$timeout', function($parse, $http, $timeout) {
 	return function(scope, elem, attr) {
 		if ('draggable' in document.createElement('span')) {
+			var cancel = null;
 			var fn = $parse(attr['ngFileDrop']);
 			elem[0].addEventListener("dragover", function(evt) {
+				$timeout.cancel(cancel);
 				evt.stopPropagation();
 				evt.preventDefault();
 				elem.addClass(attr['ngFileDragOverClass'] || "dragover");
 			}, false);
 			elem[0].addEventListener("dragleave", function(evt) {
-				elem.removeClass(attr['ngFileDragOverClass'] || "dragover");
+				cancel = $timeout(function() {
+					elem.removeClass(attr['ngFileDragOverClass'] || "dragover");
+				});
 			}, false);
 			elem[0].addEventListener("drop", function(evt) {
 				evt.stopPropagation();
