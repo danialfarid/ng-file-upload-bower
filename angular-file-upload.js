@@ -74,35 +74,35 @@ angularFileUpload.service('$upload', ['$http', '$rootScope', '$timeout', functio
 		var formData = new FormData();
 		if (config.data) {
 			// recreate function to get header like angular headerGetter function
-      var headerGetter = function(name) {
-        if (name) {
-          return config.headers[lowercase(name)] || null;
-        }
-        return config.headers;
-      };
+			var headerGetter = function(name) {
+				if (name) {
+					return config.headers[lowercase(name)] || null;
+				}
+				return config.headers;
+			};
 
-      // Move the preprocessing parameters to keep default behavior (process all parameters at the same time)
-      if (typeof config.transformRequest == 'function') {
-        config.data = config.transformRequest(config.data, headerGetter);
-      } else {
-        for (var i = 0; i < config.transformRequest.length; i++) {
-          var fn = config.transformRequest[i];
-          if (typeof fn == 'function') {
-            config.data = fn(config.data, headerGetter, config.transformRequest);
-          }
-        }
-      }
+			// Move the preprocessing parameters to keep default behavior (process all parameters at the same time)
+			if (typeof config.transformRequest == 'function') {
+				config.data = config.transformRequest(config.data, headerGetter);
+			} else {
+				for (var i = 0; i < config.transformRequest.length; i++) {
+					var fn = config.transformRequest[i];
+					if (typeof fn == 'function') {
+						config.data = fn(config.data, headerGetter, config.transformRequest);
+					}
+				}
+			}
 
-      // Parse from json data (processed by default by first transformRequest) and add them to form data or using the formDataAppender
-      var dataParsed = angular.fromJson(config.data);
-      for (var key in dataParsed) {
-        var val = dataParsed[key];
-        if (!config.formDataAppender) {
-          formData.append(key, val);
-        } else {
-          config.formDataAppender(formData, key, val);
-        }
-      }
+			// Parse from json data (processed by default by first transformRequest) and add them to form data or using the formDataAppender
+			var dataParsed = angular.fromJson(config.data);
+			for (var key in dataParsed) {
+				var val = dataParsed[key];
+				if (!config.formDataAppender) {
+					formData.append(key, val);
+				} else {
+					config.formDataAppender(formData, key, val);
+				}
+			}
 		}
 		config.transformRequest =  angular.identity;
 		
@@ -110,7 +110,7 @@ angularFileUpload.service('$upload', ['$http', '$rootScope', '$timeout', functio
 		
 		if (Object.prototype.toString.call(config.file) === '[object Array]') {
 			var isFileFormNameString = Object.prototype.toString.call(fileFormName) === '[object String]'; 
-			for (var i = 0; i < config.file.length; i++) {						         
+			for (var i = 0; i < config.file.length; i++) {										
 				formData.append(isFileFormNameString ? fileFormName + i : fileFormName[i], config.file[i], config.file[i].name);
 			}
 		} else {
