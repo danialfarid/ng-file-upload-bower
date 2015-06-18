@@ -1,7 +1,7 @@
 {
   "name": "ng-file-upload",
   "main": "ng-file-upload.js",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "homepage": "https://github.com/danialfarid/ng-file-upload",
   "authors": [
     "danialf <danial.farid@gmail.com>"
