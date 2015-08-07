@@ -11,5 +11,8 @@
   ],
   "description": "Lightweight Angular JS directive to upload files. Support drag&drop, paste image, progress and abort",
   "ignore": [],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.2"
+  }
  }
