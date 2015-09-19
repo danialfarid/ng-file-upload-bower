@@ -3,7 +3,7 @@
  * progress, resize, thumbnail, preview, validation and CORS
  * FileAPI Flash shim for old browsers not supporting FormData
  * @author  Danial  <danial.farid@gmail.com>
- * @version 7.3.2
+ * @version 7.3.3
  */
 
 (function () {
@@ -424,7 +424,7 @@ if (!window.FileReader) {
  * AngularJS file upload directives and services. Supoorts: file upload/drop/paste, resume, cancel/abort,
  * progress, resize, thumbnail, preview, validation and CORS
  * @author  Danial  <danial.farid@gmail.com>
- * @version 7.3.2
+ * @version 7.3.3
  */
 
 if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
@@ -445,7 +445,7 @@ if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
 
 var ngFileUpload = angular.module('ngFileUpload', []);
 
-ngFileUpload.version = '7.3.2';
+ngFileUpload.version = '7.3.3';
 
 ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
   var upload = this;
@@ -648,7 +648,8 @@ ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, 
       }
     }
 
-    config._chunkSize = parseInt(upload.translateScalars(config.resumeChunkSize).toString());
+    config._chunkSize = upload.translateScalars(config.resumeChunkSize);
+    config._chunkSize = config._chunkSize ? parseInt(config._chunkSize.toString()) : null;
 
     config.headers = config.headers || {};
     config.headers['Content-Type'] = undefined;
@@ -696,7 +697,8 @@ ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, 
         }
         return $http.defaults.transformRequest[0].apply(this, arguments);
       };
-    config._chunkSize = parseInt(upload.translateScalars(config.resumeChunkSize).toString());
+    config._chunkSize = upload.translateScalars(config.resumeChunkSize);
+    config._chunkSize = config._chunkSize ? parseInt(config._chunkSize.toString()) : null;
 
     return sendHttp(config);
   };
