@@ -2,7 +2,7 @@
  * AngularJS file upload directives and services. Supoorts: file upload/drop/paste, resume, cancel/abort,
  * progress, resize, thumbnail, preview, validation and CORS
  * @author  Danial  <danial.farid@gmail.com>
- * @version 11.2.2
+ * @version 11.2.3
  */
 
 if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
@@ -23,7 +23,7 @@ if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
 
 var ngFileUpload = angular.module('ngFileUpload', []);
 
-ngFileUpload.version = '11.2.2';
+ngFileUpload.version = '11.2.3';
 
 ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
   var upload = this;
@@ -1173,7 +1173,7 @@ ngFileUpload.service('UploadValidate', ['UploadDataUrl', '$q', '$timeout', funct
     if (ngModel) {
       ngModel.$formatters.push(function (files) {
         if (ngModel.$dirty) {
-          if (!angular.isArray(files)) {
+          if (files && !angular.isArray(files)) {
             files = [files];
           }
           upload.validate(files, ngModel, attr, scope).then(function () {
@@ -1637,7 +1637,7 @@ ngFileUpload.service('UploadResize', ['UploadValidate', '$q', function (UploadVa
 
   upload.isResizeSupported = function () {
     var elem = document.createElement('canvas');
-    return window.atob && elem.getContext && elem.getContext('2d');
+    return window.atob && elem.getContext && elem.getContext('2d') && window.Blob;
   };
 
   if (upload.isResizeSupported()) {
