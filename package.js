@@ -1,6 +1,6 @@
 Package.describe({
   name: "danialf:ng-file-upload",
-  "version": "12.2.11",
+  "version": "12.2.12",
   summary: "Lightweight Angular directive to upload files with optional FileAPI shim for cross browser support",
   git: "https://github.com/danialfarid/ng-file-upload.git"
 });
